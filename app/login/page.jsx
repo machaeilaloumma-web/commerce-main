@@ -11,7 +11,7 @@ export default function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // 🧠 بيانات الدخول (يمكنك تعديلها لاحقًا)
+    // 🧠 بيانات الدخول
     const ADMIN_EMAIL = 'admin@bazaro.com';
     const ADMIN_PASSWORD = '123456';
 
@@ -19,7 +19,7 @@ export default function LoginPage() {
       localStorage.setItem('isLoggedIn', 'true');
       router.push('/admin');
     } else {
-      setError('❌ البريد أو كلمة المرور غير صحيحة');
+      setError('❌ البريد الإلكتروني أو كلمة المرور غير صحيحة');
     }
   };
 
