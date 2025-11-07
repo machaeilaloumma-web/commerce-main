@@ -3,7 +3,7 @@ export default function NotFound() {
     <html lang="en">
       <body
         style={{
-          display: "flex",
+          display: "flex", 
           justifyContent: "center",
           alignItems: "center",
           height: "100vh",
