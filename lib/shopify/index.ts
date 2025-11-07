@@ -58,11 +58,23 @@ import {
   ShopifyUpdateCartOperation
 } from './types';
 
+// 🧩 Shopify connection setup
 const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, 'https://')
-  : '';
-const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
-const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
+  : null;
+
+if (!domain) {
+  console.warn('⚠️ SHOPIFY_STORE_DOMAIN not set — using dummy endpoint to skip Shopify API.');
+}
+
+// نستخدم رابط وهمي لتجنب الخطأ أثناء build
+const endpoint = domain
+  ? `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`
+  : 'https://example.com/api/2023-01/graphql.json';
+
+const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || 'dummy_token';
+
+
 
 type ExtractVariables<T> = T extends { variables: object }
   ? T['variables']
@@ -379,7 +391,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,
       path: item.url
-        .replace(domain, '')
+        .replace(domain || '', '')
         .replace('/collections', '/search')
         .replace('/pages', '')
     })) || []
