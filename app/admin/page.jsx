@@ -1,12 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js'; 
-
-// 🔗 إعداد Supabase
-const supabaseUrl = 'https://lwvzetqmozepumvctdnq.supabase.co';
-const supabaseKey =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3dnpldHFtb3plcHVtdmN0ZG5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI1NTAzMjcsImV4cCI6MjA3ODEyNjMyN30.pcRDmugKaJaegbYpBHzbbzXotQoolYKiMsoZnxS_p4g';
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '@/lib/supabase/client'; // ✅ استدعاء العميل من الملف المركزي
 
 export default function AdminPage() {
   const [name, setName] = useState('');
