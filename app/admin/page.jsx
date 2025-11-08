@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase/client'; // ✅ استدعاء العميل من الملف المركزي
+import { supabase } from '../../lib/supabase/client'
 
 export default function AdminPage() {
   const [name, setName] = useState('');
